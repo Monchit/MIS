@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="tncinformationliveModel.Store" Alias="Self" Provider="Devart.Data.PostgreSql" ProviderManifestToken="PostgreSQL, 9.1.7" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="tncinformationliveModelStoreContainer">
+    <EntitySet Name="td_information_data" EntityType="tncinformationliveModel.Store.td_information_data" store:Type="Tables" Schema="public" />
+  </EntityContainer>
+  <EntityType Name="td_information_data">
+    <Key>
+      <PropertyRef Name="job_order_no" />
+    </Key>
+    <Property Name="entry_date" Type="char" MaxLength="8" />
+    <Property Name="entry_time" Type="char" MaxLength="6" />
+    <Property Name="update_date" Type="char" MaxLength="8" />
+    <Property Name="update_time" Type="char" MaxLength="6" />
+    <Property Name="job_order_no" Type="char" Nullable="false" MaxLength="12" />
+    <Property Name="plant" Type="char" MaxLength="6" />
+    <Property Name="wc" Type="char" MaxLength="6" />
+    <Property Name="machine_no" Type="char" MaxLength="3" />
+    <Property Name="finished_goods_code" Type="char" MaxLength="30" />
+    <Property Name="curing_date" Type="char" MaxLength="8" />
+    <Property Name="curing_qty" Type="int" />
+    <Property Name="good_item_qty" Type="int" />
+    <Property Name="lot_no" Type="char" MaxLength="5" />
+    <Property Name="curing_start_date" Type="char" MaxLength="8" />
+    <Property Name="curing_start_time" Type="char" MaxLength="6" />
+    <Property Name="curing_end_date" Type="char" MaxLength="8" />
+    <Property Name="curing_end_time" Type="char" MaxLength="6" />
+    <Property Name="wip_curing_qty" Type="int" />
+    <Property Name="wip_curing_date" Type="char" MaxLength="8" />
+    <Property Name="wip_curing_time" Type="char" MaxLength="6" />
+    <Property Name="wip_curing_user" Type="char" MaxLength="50" />
+    <Property Name="post_start_date" Type="char" MaxLength="8" />
+    <Property Name="post_start_time" Type="char" MaxLength="6" />
+    <Property Name="post_start_user" Type="char" MaxLength="50" />
+    <Property Name="greasing_date" Type="char" MaxLength="8" />
+    <Property Name="greasing_time" Type="char" MaxLength="6" />
+    <Property Name="greasing_user" Type="char" MaxLength="50" />
+    <Property Name="packing_date" Type="char" MaxLength="8" />
+    <Property Name="packing_time" Type="char" MaxLength="6" />
+    <Property Name="packing_user" Type="char" MaxLength="50" />
+    <Property Name="wip_packing_qty" Type="int" />
+    <Property Name="wip_packing_date" Type="char" MaxLength="8" />
+    <Property Name="wip_packing_time" Type="char" MaxLength="6" />
+    <Property Name="wip_packing_user" Type="char" MaxLength="50" />
+    <Property Name="incoming_qty" Type="int" />
+    <Property Name="incoming_date" Type="char" MaxLength="8" />
+    <Property Name="incoming_time" Type="char" MaxLength="6" />
+    <Property Name="incoming_user" Type="char" MaxLength="50" />
+    <Property Name="rb1_job_no" Type="char" MaxLength="12" />
+    <Property Name="rb1_compound" Type="char" MaxLength="10" />
+    <Property Name="rb1_weight" Type="double precision" />
+    <Property Name="rb1_stock_in_date" Type="char" MaxLength="8" />
+    <Property Name="rb1_stock_in_time" Type="char" MaxLength="6" />
+    <Property Name="rb1_stock_in_user" Type="char" MaxLength="50" />
+    <Property Name="rb1_batch_no1" Type="char" MaxLength="20" />
+    <Property Name="rb1_batch_no2" Type="char" MaxLength="20" />
+    <Property Name="rb1_batch_no3" Type="char" MaxLength="20" />
+    <Property Name="rb1_batch_no4" Type="char" MaxLength="20" />
+    <Property Name="rb1_batch_no5" Type="char" MaxLength="20" />
+    <Property Name="rb1_batch_no6" Type="char" MaxLength="20" />
+    <Property Name="rb1_batch_no7" Type="char" MaxLength="20" />
+    <Property Name="rb1_batch_no8" Type="char" MaxLength="20" />
+    <Property Name="rb2_job_no" Type="char" MaxLength="12" />
+    <Property Name="rb2_compound" Type="char" MaxLength="10" />
+    <Property Name="rb2_weight" Type="double precision" />
+    <Property Name="rb2_stock_in_date" Type="char" MaxLength="8" />
+    <Property Name="rb2_stock_in_time" Type="char" MaxLength="6" />
+    <Property Name="rb2_stock_in_user" Type="char" MaxLength="50" />
+    <Property Name="rb2_batch_no1" Type="char" MaxLength="20" />
+    <Property Name="rb2_batch_no2" Type="char" MaxLength="20" />
+    <Property Name="rb2_batch_no3" Type="char" MaxLength="20" />
+    <Property Name="rb2_batch_no4" Type="char" MaxLength="20" />
+    <Property Name="rb2_batch_no5" Type="char" MaxLength="20" />
+    <Property Name="rb2_batch_no6" Type="char" MaxLength="20" />
+    <Property Name="rb2_batch_no7" Type="char" MaxLength="20" />
+    <Property Name="rb2_batch_no8" Type="char" MaxLength="20" />
+    <Property Name="mc1_job_no" Type="char" MaxLength="12" />
+    <Property Name="mc1_item" Type="char" MaxLength="30" />
+    <Property Name="mc1_qty" Type="int" />
+    <Property Name="mc1_process" Type="char" MaxLength="100" />
+    <Property Name="mc1_date" Type="char" MaxLength="8" />
+    <Property Name="mc1_time" Type="char" MaxLength="6" />
+    <Property Name="mc1_user" Type="char" MaxLength="50" />
+    <Property Name="mc1_stock_in_date" Type="char" MaxLength="8" />
+    <Property Name="mc1_stock_in_time" Type="char" MaxLength="6" />
+    <Property Name="mc1_stock_in_user" Type="char" MaxLength="50" />
+    <Property Name="mc2_job_no" Type="char" MaxLength="12" />
+    <Property Name="mc2_item" Type="char" MaxLength="30" />
+    <Property Name="mc2_qty" Type="int" />
+    <Property Name="mc2_process" Type="char" MaxLength="100" />
+    <Property Name="mc2_date" Type="char" MaxLength="8" />
+    <Property Name="mc2_time" Type="char" MaxLength="6" />
+    <Property Name="mc2_user" Type="char" MaxLength="50" />
+    <Property Name="mc2_stock_in_date" Type="char" MaxLength="8" />
+    <Property Name="mc2_stock_in_time" Type="char" MaxLength="6" />
+    <Property Name="mc2_stock_in_user" Type="char" MaxLength="50" />
+    <Property Name="sp1_job_no" Type="char" MaxLength="12" />
+    <Property Name="sp1_item" Type="char" MaxLength="30" />
+    <Property Name="sp1_qty" Type="int" />
+    <Property Name="sp1_process" Type="char" MaxLength="100" />
+    <Property Name="sp1_date" Type="char" MaxLength="8" />
+    <Property Name="sp1_time" Type="char" MaxLength="6" />
+    <Property Name="sp1_user" Type="char" MaxLength="50" />
+    <Property Name="sp1_stock_in_date" Type="char" MaxLength="8" />
+    <Property Name="sp1_stock_in_time" Type="char" MaxLength="6" />
+    <Property Name="sp1_stock_in_user" Type="char" MaxLength="50" />
+    <Property Name="sp2_job_no" Type="char" MaxLength="12" />
+    <Property Name="sp2_item" Type="char" MaxLength="30" />
+    <Property Name="sp2_qty" Type="int" />
+    <Property Name="sp2_process" Type="char" MaxLength="100" />
+    <Property Name="sp2_date" Type="char" MaxLength="8" />
+    <Property Name="sp2_time" Type="char" MaxLength="6" />
+    <Property Name="sp2_user" Type="char" MaxLength="50" />
+    <Property Name="sp2_stock_in_date" Type="char" MaxLength="8" />
+    <Property Name="sp2_stock_in_time" Type="char" MaxLength="6" />
+    <Property Name="sp2_stock_in_user" Type="char" MaxLength="50" />
+    <Property Name="job_status" Type="char" MaxLength="1" />
+    <Property Name="total_wip" Type="int" />
+    <Property Name="last_process" Type="char" MaxLength="20" />
+  </EntityType>
+</Schema>

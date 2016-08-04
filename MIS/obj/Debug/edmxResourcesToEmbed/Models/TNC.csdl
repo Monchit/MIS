@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="tncinformationliveModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="tncinformationliveEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="td_information_data" EntityType="tncinformationliveModel.td_information_data" />
+  </EntityContainer>
+  <EntityType Name="td_information_data">
+    <Key>
+      <PropertyRef Name="job_order_no" />
+    </Key>
+    <Property Name="entry_date" Type="String" MaxLength="8" Unicode="true" FixedLength="true" />
+    <Property Name="entry_time" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
+    <Property Name="update_date" Type="String" MaxLength="8" Unicode="true" FixedLength="true" />
+    <Property Name="update_time" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
+    <Property Name="job_order_no" Type="String" Nullable="false" MaxLength="12" Unicode="true" FixedLength="true" />
+    <Property Name="plant" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
+    <Property Name="wc" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
+    <Property Name="machine_no" Type="String" MaxLength="3" Unicode="true" FixedLength="true" />
+    <Property Name="finished_goods_code" Type="String" MaxLength="30" Unicode="true" FixedLength="true" />
+    <Property Name="curing_date" Type="String" MaxLength="8" Unicode="true" FixedLength="true" />
+    <Property Name="curing_qty" Type="Int32" />
+    <Property Name="good_item_qty" Type="Int32" />
+    <Property Name="lot_no" Type="String" MaxLength="5" Unicode="true" FixedLength="true" />
+    <Property Name="curing_start_date" Type="String" MaxLength="8" Unicode="true" FixedLength="true" />
+    <Property Name="curing_start_time" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
+    <Property Name="curing_end_date" Type="String" MaxLength="8" Unicode="true" FixedLength="true" />
+    <Property Name="curing_end_time" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
+    <Property Name="wip_curing_qty" Type="Int32" />
+    <Property Name="wip_curing_date" Type="String" MaxLength="8" Unicode="true" FixedLength="true" />
+    <Property Name="wip_curing_time" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
+    <Property Name="wip_curing_user" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+    <Property Name="post_start_date" Type="String" MaxLength="8" Unicode="true" FixedLength="true" />
+    <Property Name="post_start_time" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
+    <Property Name="post_start_user" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+    <Property Name="greasing_date" Type="String" MaxLength="8" Unicode="true" FixedLength="true" />
+    <Property Name="greasing_time" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
+    <Property Name="greasing_user" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+    <Property Name="packing_date" Type="String" MaxLength="8" Unicode="true" FixedLength="true" />
+    <Property Name="packing_time" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
+    <Property Name="packing_user" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+    <Property Name="wip_packing_qty" Type="Int32" />
+    <Property Name="wip_packing_date" Type="String" MaxLength="8" Unicode="true" FixedLength="true" />
+    <Property Name="wip_packing_time" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
+    <Property Name="wip_packing_user" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+    <Property Name="incoming_qty" Type="Int32" />
+    <Property Name="incoming_date" Type="String" MaxLength="8" Unicode="true" FixedLength="true" />
+    <Property Name="incoming_time" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
+    <Property Name="incoming_user" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+    <Property Name="rb1_job_no" Type="String" MaxLength="12" Unicode="true" FixedLength="true" />
+    <Property Name="rb1_compound" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+    <Property Name="rb1_weight" Type="Double" />
+    <Property Name="rb1_stock_in_date" Type="String" MaxLength="8" Unicode="true" FixedLength="true" />
+    <Property Name="rb1_stock_in_time" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
+    <Property Name="rb1_stock_in_user" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+    <Property Name="rb1_batch_no1" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+    <Property Name="rb1_batch_no2" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+    <Property Name="rb1_batch_no3" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+    <Property Name="rb1_batch_no4" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+    <Property Name="rb1_batch_no5" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+    <Property Name="rb1_batch_no6" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+    <Property Name="rb1_batch_no7" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+    <Property Name="rb1_batch_no8" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+    <Property Name="rb2_job_no" Type="String" MaxLength="12" Unicode="true" FixedLength="true" />
+    <Property Name="rb2_compound" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+    <Property Name="rb2_weight" Type="Double" />
+    <Property Name="rb2_stock_in_date" Type="String" MaxLength="8" Unicode="true" FixedLength="true" />
+    <Property Name="rb2_stock_in_time" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
+    <Property Name="rb2_stock_in_user" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+    <Property Name="rb2_batch_no1" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+    <Property Name="rb2_batch_no2" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+    <Property Name="rb2_batch_no3" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+    <Property Name="rb2_batch_no4" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+    <Property Name="rb2_batch_no5" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+    <Property Name="rb2_batch_no6" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+    <Property Name="rb2_batch_no7" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+    <Property Name="rb2_batch_no8" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+    <Property Name="mc1_job_no" Type="String" MaxLength="12" Unicode="true" FixedLength="true" />
+    <Property Name="mc1_item" Type="String" MaxLength="30" Unicode="true" FixedLength="true" />
+    <Property Name="mc1_qty" Type="Int32" />
+    <Property Name="mc1_process" Type="String" MaxLength="100" Unicode="true" FixedLength="true" />
+    <Property Name="mc1_date" Type="String" MaxLength="8" Unicode="true" FixedLength="true" />
+    <Property Name="mc1_time" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
+    <Property Name="mc1_user" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+    <Property Name="mc1_stock_in_date" Type="String" MaxLength="8" Unicode="true" FixedLength="true" />
+    <Property Name="mc1_stock_in_time" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
+    <Property Name="mc1_stock_in_user" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+    <Property Name="mc2_job_no" Type="String" MaxLength="12" Unicode="true" FixedLength="true" />
+    <Property Name="mc2_item" Type="String" MaxLength="30" Unicode="true" FixedLength="true" />
+    <Property Name="mc2_qty" Type="Int32" />
+    <Property Name="mc2_process" Type="String" MaxLength="100" Unicode="true" FixedLength="true" />
+    <Property Name="mc2_date" Type="String" MaxLength="8" Unicode="true" FixedLength="true" />
+    <Property Name="mc2_time" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
+    <Property Name="mc2_user" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+    <Property Name="mc2_stock_in_date" Type="String" MaxLength="8" Unicode="true" FixedLength="true" />
+    <Property Name="mc2_stock_in_time" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
+    <Property Name="mc2_stock_in_user" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+    <Property Name="sp1_job_no" Type="String" MaxLength="12" Unicode="true" FixedLength="true" />
+    <Property Name="sp1_item" Type="String" MaxLength="30" Unicode="true" FixedLength="true" />
+    <Property Name="sp1_qty" Type="Int32" />
+    <Property Name="sp1_process" Type="String" MaxLength="100" Unicode="true" FixedLength="true" />
+    <Property Name="sp1_date" Type="String" MaxLength="8" Unicode="true" FixedLength="true" />
+    <Property Name="sp1_time" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
+    <Property Name="sp1_user" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+    <Property Name="sp1_stock_in_date" Type="String" MaxLength="8" Unicode="true" FixedLength="true" />
+    <Property Name="sp1_stock_in_time" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
+    <Property Name="sp1_stock_in_user" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+    <Property Name="sp2_job_no" Type="String" MaxLength="12" Unicode="true" FixedLength="true" />
+    <Property Name="sp2_item" Type="String" MaxLength="30" Unicode="true" FixedLength="true" />
+    <Property Name="sp2_qty" Type="Int32" />
+    <Property Name="sp2_process" Type="String" MaxLength="100" Unicode="true" FixedLength="true" />
+    <Property Name="sp2_date" Type="String" MaxLength="8" Unicode="true" FixedLength="true" />
+    <Property Name="sp2_time" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
+    <Property Name="sp2_user" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+    <Property Name="sp2_stock_in_date" Type="String" MaxLength="8" Unicode="true" FixedLength="true" />
+    <Property Name="sp2_stock_in_time" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
+    <Property Name="sp2_stock_in_user" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+    <Property Name="job_status" Type="String" MaxLength="1" Unicode="true" FixedLength="true" />
+    <Property Name="total_wip" Type="Int32" />
+    <Property Name="last_process" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+  </EntityType>
+</Schema>
