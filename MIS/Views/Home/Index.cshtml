@@ -1,141 +1,166 @@
 ﻿@{
-    ViewBag.Title = "Home";
+    Layout = null;
 }
-@*<link href="~/Content/DataTables/css/fixedColumns.dataTables.min.css" rel="stylesheet" />
-<script src="~/Scripts/DataTables/dataTables.fixedColumns.min.js"></script>*@
-<style>
-    #mydiv {
-    position:fixed;
-    top: 50%;
-    left: 50%;
-    width:100px;
-    height:100px;
-    margin-top: -50px; /*set to a negative number 1/2 of your height*/
-    margin-left: -50px; /*set to a negative number 1/2 of your width*/
-    /*background: url("../../Images/ajax-loading.gif") no-repeat;
-    border: 1px solid #ccc;
-    background-color: #fff;*/
-}
-</style>
-<script type="text/javascript">
-    $(document).ready(function () {
 
-        $("#dtFrom").datepicker({
-            //defaultDate: "+1w",
-            dateFormat: 'yymmdd',
-            changeMonth: true,
-            changeYear: true,
-            numberOfMonths: 1,
-            //maxDate: "0",
-            onClose: function (selectedDate) {
-                $("#dtTo").datepicker("option", "minDate", selectedDate);
-            }
-        });
-        $("#dtTo").datepicker({
-            //defaultDate: "+1w",
-            dateFormat: 'yymmdd',
-            changeMonth: true,
-            changeYear: true,
-            numberOfMonths: 1,
-            //maxDate: "0",
-            onClose: function (selectedDate) {
-                $("#dtFrom").datepicker("option", "maxDate", selectedDate);
-            }
-        });
+<!DOCTYPE html>
 
-        $('#btSearch').click(function () {
-            if ($("#itemcode").val() != "" || $("#jobno").val() != "" || $("#wc").val() != "" || $("#plant").val() != "" ||
-                ($("#dtFrom").val() != "" && $("#dtTo").val() != "")) {
-                $("#divShow").html("");
-                var obj = new Object();
-                obj.itemcode = $("#itemcode").val();
-                obj.jobno = $("#jobno").val();
-                obj.wc = $("#wc").val();
-                obj.plant = $("#plant").val();
-                obj.dtFrom = $("#dtFrom").val();
-                obj.dtTo = $("#dtTo").val();
-            
-                var remote = "@Url.Action("_ShowTable", "Home")";
-                $("#mydiv").show();
-                $.post(remote, obj, function (data) {
-                    $("#divShow").html(data);
-                    $("#divTotal").show();
-                    $("#mydiv").hide();
-                });
-            }
-        }); // end #btSearch click
-    });
-</script>
+<html>
+<head>
+    <meta http-equiv="x-ua-compatible" content="IE=8; IE=11" />
+    <meta name="viewport" content="width=device-width" />
+    <title>MIS Menu</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        .animate {
+            transition: all 0.1s;
+            -webkit-transition: all 0.1s;
+        }
 
-<form class="form-horizontal" action="@Url.Action("ExportMain","Home")" method="post">
-    <fieldset>
-        <!-- Form Name -->
-        <legend>Search Conditions</legend>
-        <div class="row">
-            <div class="span1" style="text-align: right;">
-                Job No. :
+        .action-button {
+            /*border: 1px solid;*/
+            margin: 20px 0 20px 0;
+            border-radius: 10px;
+            /*position: relative;
+            margin: 20px;
+            float: left;
+            border-radius: 10px;*/
+        }
+
+        .gray {
+            background-color: #b8b8b8;
+            border-bottom: 6px solid #6e6e6e;
+            text-shadow: 0px -2px #6e6e6e;
+        }
+
+        .red {
+            background-color: #E74C3C;
+            border-bottom: 6px solid #BD3E31;
+            text-shadow: 0px -2px #BD3E31;
+        }
+
+        .action-button:active {
+            transform: translate(0px,5px);
+            -webkit-transform: translate(0px,5px);
+            border-bottom: 1px solid;
+        }
+
+        .btn-main-txt {
+            font-size: 80px;
+            font-size: 6.3vw;
+            padding: 40px 20px 15px 20px;
+            text-align: center;
+        }
+
+        .btn-sub-txt {
+            font-size: 24px;
+            font-size: 2.2vw;
+            padding: 5px 0 10px 0;
+            text-align: center;
+        }
+
+        .toprightcorner {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            border: 1px solid;
+            padding: 5px;
+        }
+
+        .container-main {
+            /*padding-right: 20px;
+            padding-left: 20px;*/
+            *zoom: 1;
+        }
+
+            .container-main:before,
+            .container-main:after {
+                display: table;
+                line-height: 0;
+                content: "";
+            }
+
+            .container-main:after {
+                clear: both;
+            }
+
+        a.sp-btn {
+            text-decoration: none !important;
+        }
+
+        a.inactive-btn {
+            color: #ccc;
+            text-decoration: none !important;
+        }
+
+        a.inactive-btn:hover,
+        a.inactive-btn:focus {
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-main">
+        <div class="toprightcorner">@DateTime.Now.ToString("dd/MM/yyyy")</div>
+        <div class="row-fluid well">
+            <div class="span2 text-left">
+                <img src="~/Images/computer-netwerk.jpg" />
             </div>
-            <div class="span2">
-                <input id="jobno" name="jobno" type="text" placeholder="" class="input-medium">
+            <div class="span8 text-center">
+                <div style="font-size: 70px; font-size: 5.6vw; font-weight: bolder; padding: 40px 0 20px 0;">WELCOME TO MIS</div>
+                <div style="font-size: 43px; font-size: 3.6vw; font-weight: bolder; padding: 30px 0 20px 0;">Manufacturing Information System</div>
             </div>
-            <div class="span2" style="text-align: right;">
-                Item code :
-            </div>
-            <div class="span2">
-                <input id="itemcode" name="jobno" type="text" placeholder="" class="input-medium">
-            </div>
-            <div class="span2" style="text-align: right;">
-                Work Center :
-            </div>
-            <div class="span2">
-                <input id="wc" name="wc" type="text" placeholder="" class="input-medium">
-            </div>
+            <div class="span2"></div>
         </div>
-        <br />
-        <div class="row">
-            <div class="span1" style="text-align: right;">
-                Plant :
-            </div>
-            <div class="span2">
-                <select id="plant" name="plant" class="input-medium">
-                    <option value="">--Select--</option>
-                    <option value="FTG">BPK</option>
-                    <option value="FTI">BPK3</option>
-                    <option value="FTF">MIXING</option>
-                    <option value="FTB">OSP1</option>
-                    <option value="FTC">OSP2</option>
-                    <option value="FTE">PTN</option>
-                    <option value="FTD">RSP</option>
-                </select>
-            </div>
-            <div class="span2" style="text-align: right;">
-                Start Date :
-            </div>
-            <div class="span2">
-                <input id="dtFrom" name="dtFrom" type="text" class="input-medium">
-            </div>
-            <div class="span2" style="text-align: right;">
-                End Date :
-            </div>
-            <div class="span2">
-                <input id="dtTo" name="dtTo" type="text" class="input-medium">
-            </div>
-            <br />
-            <br />
-            <br />
-            <div class="row">
-                <div class="span5"></div>
-                <div class="span3">          
-                    <button id="btSearch" name="btSearch" class="btn btn-primary" type="button">Search</button>&nbsp
-                    <button id="btClear" name="btClear" class="btn btn-danger" type="reset">Reset</button>&nbsp           
-                    <button id="btExp" name="btExp" class="btn btn-success" type="submit">Export</button>&nbsp
+        <div class="row-fluid">
+            <div class="span1"></div>
+            <div class="span10">
+                <div class="row-fluid">
+                    <div class="span4 action-button animate gray">
+                        <a href="~/Home/WIP" class="sp-btn">
+                            <p class="btn-main-txt">WIP</p>
+                            <p class="btn-sub-txt">WORK IN PROCESS</p>
+                        </a>
+                    </div>
+                    <div class="span4 action-button animate gray">
+                        <a href="#" class="sp-btn inactive-btn">
+                            <p class="btn-main-txt">STK</p>
+                            <p class="btn-sub-txt">FINISH GOODS STOCK</p>
+                        </a>
+                    </div>
+                    <div class="span4 action-button animate gray">
+                        <a href="#" class="sp-btn inactive-btn">
+                            <p class="btn-main-txt">MAT</p>
+                            <p class="btn-sub-txt">DIRECT MATERIAL</p>
+                        </a>
+                    </div>
                 </div>
             </div>
+            <div class="span1"></div>
         </div>
-    </fieldset>
-</form>
-
-<div id="divShow">
-</div>
-
-<div id="mydiv" style="display: none"><img src="~/Images/loading-animation.gif" alt="Loading Data" /></div>
+        <div class="row-fluid">
+            <div class="span1"></div>
+            <div class="span10">
+                <div class="span4 action-button animate red">
+                    <a href="#" class="inactive-btn">
+                        <p class="btn-main-txt">DEF</p>
+                        <p class="btn-sub-txt">DEFECTIVE</p>
+                    </a>
+                </div>
+                <div class="span4 action-button animate gray">
+                    <a href="#" class="inactive-btn">
+                        <p class="btn-main-txt">TOL</p>
+                        <p class="btn-sub-txt">TOOLING & MOLD</p>
+                    </a>
+                </div>
+                <div class="span4 action-button animate gray">
+                    <a href="#" class="inactive-btn">
+                        <p class="btn-main-txt">PRD</p>
+                        <p class="btn-sub-txt">PRODUCTION STATUS</p>
+                    </a>
+                </div>
+            </div>
+            <div class="span1"></div>
+        </div>
+    </div>
+</body>
+</html>

@@ -2,6 +2,7 @@
 <Schema Namespace="tncinformationliveModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="tncinformationliveEntities" p1:LazyLoadingEnabled="true">
     <EntitySet Name="td_information_data" EntityType="tncinformationliveModel.td_information_data" />
+    <EntitySet Name="tm_target" EntityType="tncinformationliveModel.tm_target" />
   </EntityContainer>
   <EntityType Name="td_information_data">
     <Key>
@@ -116,5 +117,28 @@
     <Property Name="job_status" Type="String" MaxLength="1" Unicode="true" FixedLength="true" />
     <Property Name="total_wip" Type="Int32" />
     <Property Name="last_process" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+    <Property Type="String" Name="rb1_process" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="rb2_process" MaxLength="100" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tm_target">
+    <Key>
+      <PropertyRef Name="tran_no" />
+    </Key>
+    <Property Type="String" Name="plant" MaxLength="6" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="group_cd" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="wc" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="machine_no" MaxLength="5" FixedLength="true" Unicode="true" />
+    <Property Type="Int32" Name="qty_wip" />
+    <Property Type="String" Name="status_wip" MaxLength="1" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="status_name" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Type="Int32" Name="stock_day" />
+    <Property Type="Int32" Name="lot_per_day" />
+    <Property Type="String" Name="entry_date" MaxLength="8" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="entry_time" MaxLength="6" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="entry_user" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="update_date" MaxLength="8" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="update_time" MaxLength="6" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="update_user" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="tran_no" Nullable="false" MaxLength="13" FixedLength="true" Unicode="true" />
   </EntityType>
 </Schema>

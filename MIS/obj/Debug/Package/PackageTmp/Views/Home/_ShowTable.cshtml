@@ -1,18 +1,37 @@
-﻿
-
-<style>
+﻿<style>
     div.dataTables_wrapper {
         width: 100%;
         margin: 0 auto;
     }
-    div.containTable{
-        width:100%;
+
+    div.containTable {
+        width: 100%;
     }
+
     th {
         border-right-style: solid;
         border-style: solid;
         border-width: 0 1px 0 0;
         border-right: 1px solid #ddd;
+    }
+    .txtright {
+        text-align:right;
+    }
+
+    #planjob {
+        background-color:#FFA07A;
+    }
+    #curing {
+        background-color:#ECEE00;
+    }
+    #aftercur {
+        background-color:#66CDAA;
+    }
+    #packing {
+        background-color:#00FFFF;
+    }
+    #afterpack {
+        background-color:#00ff90;
     }
 </style>
 
@@ -31,73 +50,208 @@
     });
 </script>
 
-<div class="containTable">
-    <table id="example" class="cell-border stripe nowrap">
-        <thead>
+<div class="row-fluid">
+    <div class="span4">
+        <div class="form-horizontal">
+            <div class="control-group">
+                <label class="control-label" for="ttwip">Total WIP : </label>
+                <div class="controls">
+                    <div class="input-append">
+                        <input type="text" id="ttwip" name="ttwip" class="span10 txtright" readonly="true" value="@((ViewBag.TotalWIP).ToString("N0"))" />
+                        <span class="add-on"> pcs.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="ttwipex">Total WIP <small>(Ex-Job)</small> : </label>
+                <div class="controls">
+                    <div class="input-append">
+                        <input type="text" id="ttwipex" name="ttwipex" class="span10 txtright" readonly="true" value="@((ViewBag.Exjob).ToString("N0"))" />
+                        <span class="add-on"> pcs.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="tgwip">WIP Target : </label>
+                <div class="controls">
+                    <div class="input-append">
+                        <input type="text" id="tgwip" name="tgwip" class="span10 txtright" readonly="true" />
+                        <span class="add-on"> pcs.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="gap">Gap : </label>
+                <div class="controls">
+                    <div class="input-append">
+                        <input type="text" id="gap" name="gap" class="span10 txtright" readonly="true" />
+                        <span class="add-on"> pcs.</span>
+                    </div>
+                </div>
+            </div>
+            @*<div class="control-group">
+                <label class="control-label" for="graph"></label>
+                <div class="controls">
+                    
+                </div>
+            </div>*@
+        </div>
+    </div>
+
+    <div class="span4">
+        <div class="form-horizontal">
+            <div class="control-group">
+                <label class="control-label" for="planjob">Planed Job : </label>
+                <div class="controls">
+                    <div class="input-append">
+                    <input type="text" id="planjob" name="planjob" class="span10 txtright" readonly="true" value="@((ViewBag.Plan).ToString("N0"))" />
+                        <span class="add-on"> + </span>
+                    </div>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="curing">Curing : </label>
+                <div class="controls">
+                    <div class="input-append">
+                    <input type="text" id="curing" name="curing" class="span10 txtright" readonly="true" value="@((ViewBag.Cur).ToString("N0"))" />
+                        <span class="add-on"> + </span>
+                    </div>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="aftercur">After cured : </label>
+                <div class="controls">
+                    <div class="input-append">
+                    <input type="text" id="aftercur" name="aftercur" class="span10 txtright" readonly="true" value="@((ViewBag.AfterCur).ToString("N0"))" />
+                        <span class="add-on"> + </span>
+                    </div>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="packing">Packing : </label>
+                <div class="controls">
+                    <div class="input-append">
+                    <input type="text" id="packing" name="packing" class="span10 txtright" readonly="true" value="@((ViewBag.Packing).ToString("N0"))" />
+                        <span class="add-on"> + </span>
+                    </div>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="afterpack">After packed : </label>
+                <div class="controls">
+                    <div class="input-append">
+                    <input type="text" id="afterpack" name="afterpack" class="span10 txtright" value="@((ViewBag.AfterPack).ToString("N0"))" />
+                        <span class="add-on"> . </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="span4">
+        <table class="table table-condensed table-striped" style="font-size: 11px;">
             <tr>
-                <th rowspan="2">Job No.</th>
-                <th colspan="11">Curing</th>
-                <th rowspan="1">Postcure</th>
-                <th colspan="3">Packing</th>
-                <th colspan="7">Rubber1 compound</th>
-                <th colspan="7">Rubber2 compound</th>
-                <th colspan="3">Metal case1</th>
-                <th colspan="3">Metal case2</th>
-                <th colspan="3">Spring1</th>
-                <th colspan="3">Spring2</th>
+                <td>Total WIP : </td>
+                <td>Summation of quantity of entire work in process</td>
             </tr>
             <tr>
-                <th>Total WIP</th>
-                <th>Last Process</th>
-                <th>Plant</th>
-                <th>WC</th>             
-                <th>Item</th>
-                <th>Curing Date</th>
-                <th>Lot No.</th>
-                <th>Curing Qty</th>
-                <th>Good Item Qty</th>
-                <th>Curing Start Date</th>
-                <th>Wip Curing Qty</th>
-                <th>Postcure Start Date</th>   
-                <th>Greasing Date</th>
-                <th>Packing Date</th>
-                <th>Wip Packing Qty</th>
-                <th>Compound</th>
-                <th>Weight (k.g.)</th>
-                <th>Stock in date</th>
-                <th>Batch No.1</th>
-                <th>Batch No.2</th>
-                <th>Batch No.3</th>
-                <th>Batch No.4</th>
-                <th>Compound</th>
-                <th>Weight (k.g.)</th>
-                <th>Stock in date</th>
-                <th>Batch No.1</th>
-                <th>Batch No.2</th>
-                <th>Batch No.3</th>
-                <th>Batch No.4</th>
-                <th>Item</th>
-                <th>Qty</th>
-                <th>Process</th>
-                <th>Item</th>
-                <th>Qty</th>
-                <th>Process</th>
-                <th>Item</th>
-                <th>Qty</th>
-                <th>Process</th>
-                <th>Item</th>
-                <th>Qty</th>
-                <th>Process</th>        
+                <td>Planned Job : </td>
+                <td>Summation of entire work in process (Excluded Planned Job)</td>
             </tr>
-        </thead>   
+            <tr>
+                <td>Curing : </td>
+                <td>Work in process quantity of curing process</td>
+            </tr>
+            <tr>
+                <td>After cure : </td>
+                <td>Work in process quantity of after curing process</td>
+            </tr>
+            <tr>
+                <td>Packing : </td>
+                <td>Work in process quantity of after packing process</td>
+            </tr>
+            <tr>
+                <td>After packed : </td>
+                <td>Work in process quantity of after packing process</td>
+            </tr>
+            <tr>
+                <td>WIP Target : </td>
+                <td>Target quantity of WIP (Identified by Production Planning)</td>
+            </tr>
+            <tr>
+                <td>Gap : </td>
+                <td>Gap between WIP vs Target</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<hr />
+
+<table id="example" class="cell-border stripe nowrap">
+    <thead>
+        <tr>
+            <th rowspan="2">Job No.</th>
+            <th colspan="11">Curing</th>
+            <th rowspan="1">Postcure</th>
+            <th colspan="3">Packing</th>
+            <th colspan="7">Rubber1 compound</th>
+            <th colspan="7">Rubber2 compound</th>
+            <th colspan="3">Metal case1</th>
+            <th colspan="3">Metal case2</th>
+            <th colspan="3">Spring1</th>
+            <th colspan="3">Spring2</th>
+        </tr>
+        <tr>
+            <th>Q'ty Last Process</th>
+            <th>Last Process</th>
+            <th>Plant</th>
+            <th>WC</th>
+            <th>Item</th>
+            <th>Curing Date</th>
+            <th>Lot No.</th>
+            <th>Curing Qty</th>
+            <th>Good Item Qty</th>
+            <th>Curing Start Date</th>
+            <th>Wip Curing Qty</th>
+            <th>Postcure Start Date</th>
+            <th>Greasing Date</th>
+            <th>Packing Date</th>
+            <th>Wip Packing Qty</th>
+            <th>Compound</th>
+            <th>Weight (k.g.)</th>
+            <th>Stock in date</th>
+            <th>Batch No.1</th>
+            <th>Batch No.2</th>
+            <th>Batch No.3</th>
+            <th>Batch No.4</th>
+            <th>Compound</th>
+            <th>Weight (k.g.)</th>
+            <th>Stock in date</th>
+            <th>Batch No.1</th>
+            <th>Batch No.2</th>
+            <th>Batch No.3</th>
+            <th>Batch No.4</th>
+            <th>Item</th>
+            <th>Qty</th>
+            <th>Process</th>
+            <th>Item</th>
+            <th>Qty</th>
+            <th>Process</th>
+            <th>Item</th>
+            <th>Qty</th>
+            <th>Process</th>
+            <th>Item</th>
+            <th>Qty</th>
+            <th>Process</th>
+        </tr>
+    </thead>
     <tbody>
-        
+
         @foreach (var item in ViewBag.Inform)
-{
+        {
     <tr>
         <td>@item.job_order_no</td>
         <td>@item.total_wip</td>
-        <td>@item.last_process</td>
+        <td @if(item.last_process.Trim() == "After Packed"){ <text>style="background-color:#00ff90;"</text> }>@item.last_process</td>
         <td>@if (item.plant.Trim() == "FTB")
             {
                 <text>OSP1</text>
@@ -124,29 +278,28 @@
             }
             else if (item.plant.Trim() == "FTI")
             {
-                <text>BPK3</text> 
+                <text>BPK3</text>
             }
             else
             {
-                <text>Other</text>  
-            }     
+                <text>Other</text>
+            }
         </td>
-
-        <td>@item.wc/@item.machine_no</td>       
+        <td>@item.wc/@item.machine_no</td>
         <td>@item.finished_goods_code</td>
-        <td>@item.curing_date</td>  
-        <td>@item.lot_no</td>      
+        <td>@item.curing_date.Insert(4,"-").Insert(7,"-")</td>
+        <td>@item.lot_no</td>
         <td>@item.curing_qty</td>
-        <td>@item.good_item_qty</td>        
-        <td>@item.curing_start_date</td>
+        <td>@item.good_item_qty</td>
+        <td>@item.curing_start_date.Insert(4,"-").Insert(7,"-")</td>
         <td>@item.wip_curing_qty</td>
-        <td>@item.post_start_date</td>
-        <td>@item.greasing_date</td>
-        <td>@item.packing_date</td>
+        <td>@item.post_start_date.Insert(4,"-").Insert(7,"-")</td>
+        <td>@item.greasing_date.Insert(4,"-").Insert(7,"-")</td>
+        <td>@item.packing_date.Insert(4,"-").Insert(7,"-")</td>
         <td>@item.wip_packing_qty</td>
         <td>@item.rb1_compound</td>
         <td>@item.rb1_weight</td>
-        <td>@item.rb1_stock_in_date</td>
+        <td>@item.rb1_stock_in_date.Insert(4,"-").Insert(7,"-")</td>
         <td>@item.rb1_batch_no1</td>
         <td>@item.rb1_batch_no2</td>
         <td>@item.rb1_batch_no3</td>
@@ -169,11 +322,7 @@
         <td>@item.sp1_process</td>
         <td>@item.sp2_item</td>
         <td>@item.sp2_qty</td>
-        <td>@item.sp2_process</td>  
+        <td>@item.sp2_process</td>
     </tr>
-}
+        }
 </table>
-</div>
-<div id="divTotal" class="row-fluid">
-    <div class="span3 offset1"><b>Total WIP : @ViewBag.SumWip  </b></div>
-</div>

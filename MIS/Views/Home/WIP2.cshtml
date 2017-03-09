@@ -1,0 +1,202 @@
+﻿@{
+    ViewBag.Title = "WORK IN PROCESS";
+}
+<style>
+    #mydiv {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 100px;
+        height: 100px;
+        margin-top: -50px; /*set to a negative number 1/2 of your height*/
+        margin-left: -50px; /*set to a negative number 1/2 of your width*/
+    }
+</style>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#st_cur_dt").datepicker({
+            dateFormat: 'yy-mm-dd',
+            changeMonth: true,
+            changeYear: true,
+            numberOfMonths: 1,
+            onClose: function (selectedDate) {
+                $("#fn_cur_dt").datepicker("option", "minDate", selectedDate);
+            }
+        });
+        $("#fn_cur_dt").datepicker({
+            dateFormat: 'yy-mm-dd',
+            changeMonth: true,
+            changeYear: true,
+            numberOfMonths: 1,
+            onClose: function (selectedDate) {
+                $("#st_cur_dt").datepicker("option", "maxDate", selectedDate);
+            }
+        });
+
+        $('#btSearch').click(function () {
+            if ($("#itemcode").val() != "" || $("#jobno").val() != "" || $("#wc").val() != "" || $("#mc").val() != "" || $("#plant").val() != "" || ($("#st_cur_dt").val() != "" || $("#fn_cur_dt").val() != "")) {
+                $("#divShow").html("");
+
+                var st_cur = $("#st_cur_dt").val();
+                var fn_cur = $("#fn_cur_dt").val();
+
+                var obj = new Object();
+                obj.itemcode = $("#itemcode").val();
+                obj.jobno = $("#jobno").val();
+                obj.wc = $("#wc").val();
+                obj.mc = $("#mc").val();
+                obj.plant = $("#plant").val();
+                obj.st_cur = st_cur.replace(/-/g, '');
+                obj.fn_cur = fn_cur.replace(/-/g, '');
+                obj.laststatus = $("#laststatus").val();
+
+                $("#mydiv").show();
+                
+                $.ajax({
+                    url: '@Url.Action("_ShowTable2", "Home")',
+                    data: obj,
+                    cache: false,
+                    type: "POST",
+                    dataType: "html",
+                    success: function (data) {//, textStatus, XMLHttpRequest
+                        $("#divShow").html(data);
+                        $("#col_search").removeClass("in");
+                        //$("#col_graph").addClass("in");
+                        $("#col_data").addClass("in");
+                        $("#mydiv").hide();
+                    },
+                    error: function (message) {
+                        alert(message);
+                    }
+                });
+
+                @*$.get("@Url.Action("_GetGraphWIP", "Home")", obj, function (data) {
+                    $("#divGraph").html(data);
+                });*@
+            }
+        }); // end #btSearch click
+    });
+</script>
+
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" href="#col_search">
+                <strong>Search Conditions :</strong></a>
+        </div>
+        <div id="col_search" class="accordion-body collapse in">
+            <div class="accordion-inner">
+                <form action="@Url.Action("ExportMain", "Home")" method="post">
+                    <div class="row-fluid">
+                        <div class="span3">
+                            <div class="form-horizontal">
+                                <div class="control-group">
+                                    <label class="control-label" for="plant">Plant : </label>
+                                    <div class="controls">
+                                        <select id="plant" name="plant" class="span12">
+                                            <option value="">All</option>
+                                            <option value="FTG">BPK</option>
+                                            <option value="FTI">BPK3</option>
+                                            <option value="FTF">MIXING</option>
+                                            <option value="FTB">OSP1</option>
+                                            <option value="FTC">OSP2</option>
+                                            <option value="FTE">PTN</option>
+                                            <option value="FTD">RSP</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="laststatus">Status : </label>
+                                    <div class="controls">
+                                        <select id="laststatus" name="laststatus" class="span12">
+                                            <option value="-">All</option>
+                                            <option>Plan</option>
+                                            <option>Curing</option>
+                                            <option>After Cured</option>
+                                            <option>Packing</option>
+                                            <option>After Packed</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="span3">
+                            <div class="form-horizontal">
+                                <div class="control-group">
+                                    <label class="control-label" for="wc">Work Center : </label>
+                                    <div class="controls">
+                                        <input id="wc" name="wc" type="text" placeholder="Work Center" class="span12">
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="mc">Machine No. : </label>
+                                    <div class="controls">
+                                        <input id="mc" name="mc" type="text" placeholder="Machine" class="span12">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="span3">
+                            <div class="form-horizontal">
+                                <div class="control-group">
+                                    <label class="control-label" for="itemcode">Item Code : </label>
+                                    <div class="controls">
+                                        <input id="itemcode" name="itemcode" type="text" placeholder="Item Code" class="span12">
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="jobno">Job No. :</label>
+                                    <div class="controls">
+                                        <input id="jobno" name="jobno" type="text" placeholder="Job No." class="span12">
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="span3">
+                            <div class="form-horizontal">
+                                <div class="control-group">
+                                    <label class="control-label" for="st_cur_dt">Start cure date : </label>
+                                    <div class="controls">
+                                        <input id="st_cur_dt" name="st_cur_dt" type="text" class="input-small" readonly="true">
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="fn_cur_dt">End cure date :</label>
+                                    <div class="controls">
+                                        <input id="fn_cur_dt" name="fn_cur_dt" type="text" class="input-small" readonly="true">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span12 text-center">
+                            <button id="btSearch" name="btSearch" class="btn btn-primary" type="button">
+                                <i class="icon-search icon-white"></i> Search</button>
+                            <button id="btClear" name="btClear" class="btn btn-danger" type="reset">
+                                <i class="icon-refresh icon-white"></i> Reset</button>
+                            <button id="btExp" name="btExp" class="btn btn-success" type="submit">
+                                <i class="icon-list-alt icon-white"></i> Export</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" href="#col_data">
+                <strong>Data output : </strong></a>
+        </div>
+        <div id="col_data" class="accordion-body collapse">
+            <div id="divShow" class="accordion-inner">
+
+            </div>
+        </div>
+    </div>
+
+<div id="mydiv" style="display: none">
+    <img src="~/Images/loading-animation.gif" alt="Loading Data" />
+</div>

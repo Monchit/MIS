@@ -4,8 +4,9 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="bd42d73dd8ef477bae923b52980df441" Name="Diagram1" ZoomLevel="19">
+      <Diagram DiagramId="bd42d73dd8ef477bae923b52980df441" Name="Diagram1" ZoomLevel="55">
         <EntityTypeShape EntityType="tncinformationliveModel.td_information_data" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="tncinformationliveModel.tm_target" Width="1.5" PointX="2.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,0 +1,74 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index1</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        /*body {
+            text-align: center;
+        }*/
+
+        .button-green,
+        .button-red,
+        .button-yellow,
+        .button-blue {
+            color: white;
+            border-radius: 4px;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+        }
+
+        .button-green {
+            background: rgb(28, 184, 65); /* this is a green */
+        }
+
+        .button-red {
+            background: rgb(202, 60, 60); /* this is a maroon */
+        }
+
+        .button-yellow {
+            background: rgb(223, 117, 20); /* this is an orange */
+        }
+
+        .button-blue {
+            background: rgb(66, 184, 221); /* this is a light blue */
+        }
+
+        .button-xsmall {
+            font-size: 70%;
+        }
+
+        .button-small {
+            font-size: 85%;
+        }
+
+        .button-large {
+            font-size: 110%;
+        }
+
+        .button-xlarge {
+            font-size: 400%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span2 text-left">
+                <img src="~/Images/computer-netwerk.jpg" style="width: 200px; height: 190px;" class="img-polaroid" />
+            </div>
+            <div class="span8 text-center">
+                <div style="font-size:75px;font-size:5vw;margin:50px;">WELCOME TO MIS</div>
+                <br />
+                <div style="font-size: 35px;font-size:4vw;">Manufacturing Information System</div>
+            </div>
+            <div class="span2 text-right">@DateTime.Now.ToString("dd/MM/yyyy")</div>
+        </div>
+    </div>
+</body>
+</html>

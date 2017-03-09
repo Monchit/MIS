@@ -1961,15 +1961,15 @@ legend + .control-group {
 
 .form-horizontal .control-label {
   float: left;
-  width: 160px;
+  width: 125px;/*160px*//*Monchit*/
   padding-top: 5px;
   text-align: right;
 }
 
 .form-horizontal .controls {
   *display: inline-block;
-  *padding-left: 20px;
-  margin-left: 180px;
+  *padding-left: 10px;/*20px*/
+  margin-left: 135px;/*180px*/
   *margin-left: 0;
 }
 

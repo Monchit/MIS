@@ -2,6 +2,7 @@
 <Schema Namespace="tncinformationliveModel.Store" Alias="Self" Provider="Devart.Data.PostgreSql" ProviderManifestToken="PostgreSQL, 9.1.7" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="tncinformationliveModelStoreContainer">
     <EntitySet Name="td_information_data" EntityType="tncinformationliveModel.Store.td_information_data" store:Type="Tables" Schema="public" />
+    <EntitySet Name="tm_target" EntityType="tncinformationliveModel.Store.tm_target" store:Type="Tables" Schema="public" />
   </EntityContainer>
   <EntityType Name="td_information_data">
     <Key>
@@ -116,5 +117,28 @@
     <Property Name="job_status" Type="char" MaxLength="1" />
     <Property Name="total_wip" Type="int" />
     <Property Name="last_process" Type="char" MaxLength="20" />
+    <Property Name="rb1_process" Type="char" MaxLength="100" />
+    <Property Name="rb2_process" Type="char" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="tm_target">
+    <Key>
+      <PropertyRef Name="tran_no" />
+    </Key>
+    <Property Name="plant" Type="char" MaxLength="6" />
+    <Property Name="group_cd" Type="char" MaxLength="10" />
+    <Property Name="wc" Type="char" MaxLength="10" />
+    <Property Name="machine_no" Type="char" MaxLength="5" />
+    <Property Name="qty_wip" Type="int" />
+    <Property Name="status_wip" Type="char" MaxLength="1" />
+    <Property Name="status_name" Type="char" MaxLength="50" />
+    <Property Name="stock_day" Type="int" />
+    <Property Name="lot_per_day" Type="int" />
+    <Property Name="entry_date" Type="char" MaxLength="8" />
+    <Property Name="entry_time" Type="char" MaxLength="6" />
+    <Property Name="entry_user" Type="char" MaxLength="50" />
+    <Property Name="update_date" Type="char" MaxLength="8" />
+    <Property Name="update_time" Type="char" MaxLength="6" />
+    <Property Name="update_user" Type="char" MaxLength="50" />
+    <Property Name="tran_no" Type="char" Nullable="false" MaxLength="13" />
   </EntityType>
 </Schema>

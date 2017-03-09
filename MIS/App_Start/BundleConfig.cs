@@ -55,6 +55,11 @@ namespace MIS
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                         "~/Scripts/bootstrap.js"));
+
+            // Highcharts
+            bundles.Add(new ScriptBundle("~/bundles/highcharts").Include(
+                        "~/Scripts/Highcharts-4.0.1/js/highcharts.js",
+                        "~/Scripts/Highcharts-4.0.1/js/modules/exporting.js"));
         }
     }
 }

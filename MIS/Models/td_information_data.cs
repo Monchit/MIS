@@ -123,5 +123,7 @@ namespace MIS.Models
         public string job_status { get; set; }
         public Nullable<int> total_wip { get; set; }
         public string last_process { get; set; }
+        public string rb1_process { get; set; }
+        public string rb2_process { get; set; }
     }
 }

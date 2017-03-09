@@ -26,5 +26,6 @@ namespace MIS.Models
         }
     
         public DbSet<td_information_data> td_information_data { get; set; }
+        public DbSet<tm_target> tm_target { get; set; }
     }
 }

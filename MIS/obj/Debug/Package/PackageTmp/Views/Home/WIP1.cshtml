@@ -1,0 +1,361 @@
+﻿@{
+    ViewBag.Title = "WORK IN PROCESS";
+}
+@*<link href="~/Content/DataTables/css/fixedColumns.dataTables.min.css" rel="stylesheet" />
+<script src="~/Scripts/DataTables/dataTables.fixedColumns.min.js"></script>*@
+<style>
+    #mydiv {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 100px;
+        height: 100px;
+        margin-top: -50px; /*set to a negative number 1/2 of your height*/
+        margin-left: -50px; /*set to a negative number 1/2 of your width*/
+        /*background: url("../../Images/ajax-loading.gif") no-repeat;
+    border: 1px solid #ccc;
+    background-color: #fff;*/
+    }
+</style>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#st_cur_dt").datepicker({
+            //defaultDate: "+1w",
+            dateFormat: 'yy-mm-dd',
+            changeMonth: true,
+            changeYear: true,
+            numberOfMonths: 1,
+            //maxDate: "0",
+            onClose: function (selectedDate) {
+                $("#fn_cur_dt").datepicker("option", "minDate", selectedDate);
+            }
+        });
+        $("#fn_cur_dt").datepicker({
+            //defaultDate: "+1w",
+            dateFormat: 'yy-mm-dd',
+            changeMonth: true,
+            changeYear: true,
+            numberOfMonths: 1,
+            //maxDate: "0",
+            onClose: function (selectedDate) {
+                $("#st_cur_dt").datepicker("option", "maxDate", selectedDate);
+            }
+        });
+
+
+        $('#btSearch').click(function () {
+            if ($("#itemcode").val() != "" || $("#jobno").val() != "" || $("#wc").val() != "" || $("#mc").val() != "" ||
+                $("#plant").val() != "" || ($("#st_cur_dt").val() != "" || $("#fn_cur_dt").val() != ""))
+            {
+                //$("#divShow").html("");
+
+                var st_cur = $("#st_cur_dt").val();
+                var fn_cur = $("#fn_cur_dt").val();
+
+                var obj = new Object();
+                obj.itemcode = $("#itemcode").val();
+                obj.jobno = $("#jobno").val();
+                obj.wc = $("#wc").val();
+                obj.mc = $("#mc").val();
+                obj.plant = $("#plant").val();
+                obj.st_cur = st_cur.replace(/-/g, '');
+                obj.fn_cur = fn_cur.replace(/-/g, '');
+                obj.laststatus = $("#laststatus").val();
+
+                $("#mydiv").show();
+
+
+                $('#example').DataTable({
+                    "processing": true,
+                    "serverSide": true,
+                    "ajax": "@Url.Action("GetDataDetail", "Home")",
+                    "scrollX": true,
+                    "scrollCollapse": true,
+                    "fixedColumns": {
+                        "leftColumns": 1
+                    },
+                    "columnDefs": [{
+                        "visible": false
+                    }]
+                });
+
+                @*$.ajax({
+                    url: '@Url.Action("_ShowTable1", "Home")',
+                    data: obj,
+                    cache: false,
+                    type: "POST",
+                    dataType: "html",
+                    success: function (data) {//, textStatus, XMLHttpRequest
+                        $("#divShow").html(data);
+                        $("#col_search").removeClass("in");
+                        $("#col_graph").addClass("in");
+                        $("#col_data").addClass("in");
+                        $("#mydiv").hide();
+                    },
+                    error: function (message) {
+                        alert(message);
+                    }
+                });*@
+                @*$.ajax({
+                    url: '@Url.Action("GetDataDetail", "Home")',
+                    type: "GET",
+                    contentType: "application/json; charset=utf-8",
+                    data: obj,
+                    dataType: "json",
+                    success: function (data) {
+                        $("#col_search").removeClass("in");
+                        $("#col_graph").addClass("in");
+                        $("#col_data").addClass("in");
+                        var row = "";
+                        $.each(data, function (index, item) {
+                            row += "<tr><td>"
+                                + item.job_order_no + "</td><td>"
+                                + item.wc + "</td><td>"
+                                + item.finished_goods_code + "</td><td>"
+                                + item.curing_date + "</td><td>"
+                                + item.lot_no + "</td><td>"
+                                + item.curing_qty + "</td><td>"
+                                + item.good_item_qty + "</td><td>"
+                                + item.curing_start_date + "</td><td>"
+                                + item.wip_curing_qty + "</td><td>"
+                                + item.post_start_date + "</td><td>"
+                                + item.greasing_date + "</td><td>"
+                                + item.packing_date + "</td><td>"
+                                + item.wip_packing_qty + "</td><td>"
+                                + item.rb1_compound + "</td><td>"
+                                + item.rb1_weight + "</td><td>"
+                                + item.rb1_stock_in_date + "</td><td>"
+                                + item.rb1_batch_no1 + "</td><td>"
+                                + item.rb1_batch_no2 + "</td><td>"
+                                + item.rb1_batch_no3 + "</td><td>"
+                                + item.rb1_batch_no4 + "</td><td>"
+                                + item.rb2_compound + "</td><td>"
+                                + item.rb2_weight + "</td><td>"
+                                + item.rb2_stock_in_date + "</td><td>"
+                                + item.rb2_batch_no1 + "</td><td>"
+                                + item.rb2_batch_no2 + "</td><td>"
+                                + item.rb2_batch_no3 + "</td><td>"
+                                + item.rb2_batch_no4 + "</td><td>"
+                                + item.mc1_item + "</td><td>"
+                                + item.mc1_qty + "</td><td>"
+                                + item.mc1_process + "</td><td>"
+                                + item.mc2_item + "</td><td>"
+                                + item.mc2_qty + "</td><td>"
+                                + item.mc2_process + "</td><td>"
+                                + item.sp1_item + "</td><td>"
+                                + item.sp1_qty + "</td><td>"
+                                + item.sp1_process + "</td><td>"
+                                + item.sp2_item + "</td><td>"
+                                + item.sp2_qty + "</td><td>"
+                                + item.sp2_process + "</td></tr>";
+                        });
+                        $("#datadetail").html(row);
+                        
+                        $("#mydiv").hide();
+                    },
+                    error: function (result) {
+                        alert("Error");
+                        $("#mydiv").hide();
+                    }
+                });*@
+
+                $.get("@Url.Action("_GetGraphWIP", "Home")", obj, function (data) {
+                    $("#divGraph").html(data);
+                });
+            }
+        }); // end #btSearch click
+    });
+</script>
+
+<div class="accordion" id="acc_search">
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" href="#col_search">
+                <strong>Search Conditions :</strong></a>
+        </div>
+        <div id="col_search" class="accordion-body collapse in">
+            <div class="accordion-inner">
+                <form action="@Url.Action("ExportMain", "Home")" method="post">
+                    <div class="row-fluid">
+                        <div class="span3">
+                            <div class="form-horizontal">
+                                <div class="control-group">
+                                    <label class="control-label" for="plant">Plant : </label>
+                                    <div class="controls">
+                                        <select id="plant" name="plant" class="span12">
+                                            <option value="">All</option>
+                                            <option value="FTG">BPK</option>
+                                            <option value="FTI">BPK3</option>
+                                            <option value="FTF">MIXING</option>
+                                            <option value="FTB">OSP1</option>
+                                            <option value="FTC">OSP2</option>
+                                            <option value="FTE">PTN</option>
+                                            <option value="FTD">RSP</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="laststatus">Status : </label>
+                                    <div class="controls">
+                                        <select id="laststatus" name="laststatus" class="span12">
+                                            <option value="-">All</option>
+                                            <option>Plan</option>
+                                            <option>Curing</option>
+                                            <option>After Cured</option>
+                                            <option>Packing</option>
+                                            <option>After Packed</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="span3">
+                            <div class="form-horizontal">
+                                <div class="control-group">
+                                    <label class="control-label" for="wc">Work Center : </label>
+                                    <div class="controls">
+                                        <input id="wc" name="wc" type="text" placeholder="Work Center" class="span12">
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="mc">Machine No. : </label>
+                                    <div class="controls">
+                                        <input id="mc" name="mc" type="text" placeholder="Machine" class="span12">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="span3">
+                            <div class="form-horizontal">
+                                <div class="control-group">
+                                    <label class="control-label" for="itemcode">Item Code : </label>
+                                    <div class="controls">
+                                        <input id="itemcode" name="itemcode" type="text" placeholder="Item Code" class="span12">
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="jobno">Job No. :</label>
+                                    <div class="controls">
+                                        <input id="jobno" name="jobno" type="text" placeholder="Job No." class="span12">
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="span3">
+                            <div class="form-horizontal">
+                                <div class="control-group">
+                                    <label class="control-label" for="st_cur_dt">Start cure date : </label>
+                                    <div class="controls">
+                                        <input id="st_cur_dt" name="st_cur_dt" type="text" class="input-small" readonly="true">
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="fn_cur_dt">End cure date :</label>
+                                    <div class="controls">
+                                        <input id="fn_cur_dt" name="fn_cur_dt" type="text" class="input-small" readonly="true">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span12 text-center">
+                            <button id="btSearch" name="btSearch" class="btn btn-primary" type="button">Search</button>
+                            <button id="btClear" name="btClear" class="btn btn-danger" type="reset">Reset</button>
+                            <button id="btExp" name="btExp" class="btn btn-success" type="submit">Export</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" href="#col_graph">
+                <strong>Graph : </strong></a>
+        </div>
+        <div id="col_graph" class="accordion-body collapse">
+            <div id="divGraph" class="accordion-inner">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" href="#col_data">
+                <strong>Data output : </strong></a>
+        </div>
+        <div id="col_data" class="accordion-body collapse">
+            <div id="divShow" class="accordion-inner">
+                <table id="example" class="cell-border stripe nowrap">
+                    <thead>
+                        <tr>
+                            <th rowspan="2">Job No.</th>
+                            <th colspan="11">Curing</th>
+                            <th rowspan="1">Postcure</th>
+                            <th colspan="3">Packing</th>
+                            <th colspan="7">Rubber1 compound</th>
+                            <th colspan="7">Rubber2 compound</th>
+                            <th colspan="3">Metal case1</th>
+                            <th colspan="3">Metal case2</th>
+                            <th colspan="3">Spring1</th>
+                            <th colspan="3">Spring2</th>
+                        </tr>
+                        <tr>
+                            <th>Q'ty Last Process</th>
+                            <th>Last Process</th>
+                            <th>Plant</th>
+                            <th>WC</th>
+                            <th>Item</th>
+                            <th>Curing Date</th>
+                            <th>Lot No.</th>
+                            <th>Curing Qty</th>
+                            <th>Good Item Qty</th>
+                            <th>Curing Start Date</th>
+                            <th>Wip Curing Qty</th>
+                            <th>Postcure Start Date</th>
+                            <th>Greasing Date</th>
+                            <th>Packing Date</th>
+                            <th>Wip Packing Qty</th>
+                            <th>Compound</th>
+                            <th>Weight (kg.)</th>
+                            <th>Stock in date</th>
+                            <th>Batch No.1</th>
+                            <th>Batch No.2</th>
+                            <th>Batch No.3</th>
+                            <th>Batch No.4</th>
+                            <th>Compound</th>
+                            <th>Weight (kg.)</th>
+                            <th>Stock in date</th>
+                            <th>Batch No.1</th>
+                            <th>Batch No.2</th>
+                            <th>Batch No.3</th>
+                            <th>Batch No.4</th>
+                            <th>Item</th>
+                            <th>Qty</th>
+                            <th>Process</th>
+                            <th>Item</th>
+                            <th>Qty</th>
+                            <th>Process</th>
+                            <th>Item</th>
+                            <th>Qty</th>
+                            <th>Process</th>
+                            <th>Item</th>
+                            <th>Qty</th>
+                            <th>Process</th>
+                        </tr>
+                    </thead>
+                    <tbody id="datadetail"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="mydiv" style="display: none">
+    <img src="~/Images/loading-animation.gif" alt="Loading Data" />
+</div>

@@ -4,9 +4,10 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="tncinformationliveModel.Store" Alias="Self" Provider="Devart.Data.PostgreSql" ProviderManifestToken="PostgreSQL, 9.1.7" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="tncinformationliveModel.Store" Alias="Self" Provider="Devart.Data.PostgreSql" ProviderManifestToken="PostgreSQL, 9.1.7" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="tncinformationliveModelStoreContainer">
           <EntitySet Name="td_information_data" EntityType="tncinformationliveModel.Store.td_information_data" store:Type="Tables" Schema="public" />
+          <EntitySet Name="tm_target" EntityType="tncinformationliveModel.Store.tm_target" store:Type="Tables" Schema="public" />
         </EntityContainer>
         <EntityType Name="td_information_data">
           <Key>
@@ -121,14 +122,37 @@
           <Property Name="job_status" Type="char" MaxLength="1" />
           <Property Name="total_wip" Type="int" />
           <Property Name="last_process" Type="char" MaxLength="20" />
+          <Property Name="rb1_process" Type="char" MaxLength="100" />
+          <Property Name="rb2_process" Type="char" MaxLength="100" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+        <EntityType Name="tm_target">
+          <Key>
+            <PropertyRef Name="tran_no" />
+          </Key>
+          <Property Name="plant" Type="char" MaxLength="6" />
+          <Property Name="group_cd" Type="char" MaxLength="10" />
+          <Property Name="wc" Type="char" MaxLength="10" />
+          <Property Name="machine_no" Type="char" MaxLength="5" />
+          <Property Name="qty_wip" Type="int" />
+          <Property Name="status_wip" Type="char" MaxLength="1" />
+          <Property Name="status_name" Type="char" MaxLength="50" />
+          <Property Name="stock_day" Type="int" />
+          <Property Name="lot_per_day" Type="int" />
+          <Property Name="entry_date" Type="char" MaxLength="8" />
+          <Property Name="entry_time" Type="char" MaxLength="6" />
+          <Property Name="entry_user" Type="char" MaxLength="50" />
+          <Property Name="update_date" Type="char" MaxLength="8" />
+          <Property Name="update_time" Type="char" MaxLength="6" />
+          <Property Name="update_user" Type="char" MaxLength="50" />
+          <Property Name="tran_no" Type="char" Nullable="false" MaxLength="13" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="tncinformationliveModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="tncinformationliveEntities" p1:LazyLoadingEnabled="true">
           <EntitySet Name="td_information_data" EntityType="tncinformationliveModel.td_information_data" />
+          <EntitySet Name="tm_target" EntityType="tncinformationliveModel.tm_target" />
         </EntityContainer>
         <EntityType Name="td_information_data">
           <Key>
@@ -243,6 +267,29 @@
           <Property Name="job_status" Type="String" MaxLength="1" Unicode="true" FixedLength="true" />
           <Property Name="total_wip" Type="Int32" />
           <Property Name="last_process" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Type="String" Name="rb1_process" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="rb2_process" MaxLength="100" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tm_target">
+          <Key>
+            <PropertyRef Name="tran_no" />
+          </Key>
+          <Property Type="String" Name="plant" MaxLength="6" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="group_cd" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="wc" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="machine_no" MaxLength="5" FixedLength="true" Unicode="true" />
+          <Property Type="Int32" Name="qty_wip" />
+          <Property Type="String" Name="status_wip" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="status_name" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Type="Int32" Name="stock_day" />
+          <Property Type="Int32" Name="lot_per_day" />
+          <Property Type="String" Name="entry_date" MaxLength="8" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="entry_time" MaxLength="6" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="entry_user" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="update_date" MaxLength="8" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="update_time" MaxLength="6" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="update_user" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="tran_no" Nullable="false" MaxLength="13" FixedLength="true" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -253,6 +300,8 @@
           <EntitySetMapping Name="td_information_data">
             <EntityTypeMapping TypeName="tncinformationliveModel.td_information_data">
               <MappingFragment StoreEntitySet="td_information_data">
+                <ScalarProperty Name="rb2_process" ColumnName="rb2_process" />
+                <ScalarProperty Name="rb1_process" ColumnName="rb1_process" />
                 <ScalarProperty Name="entry_date" ColumnName="entry_date" />
                 <ScalarProperty Name="entry_time" ColumnName="entry_time" />
                 <ScalarProperty Name="update_date" ColumnName="update_date" />
@@ -362,6 +411,28 @@
                 <ScalarProperty Name="job_status" ColumnName="job_status" />
                 <ScalarProperty Name="total_wip" ColumnName="total_wip" />
                 <ScalarProperty Name="last_process" ColumnName="last_process" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tm_target">
+            <EntityTypeMapping TypeName="tncinformationliveModel.tm_target">
+              <MappingFragment StoreEntitySet="tm_target">
+                <ScalarProperty Name="tran_no" ColumnName="tran_no" />
+                <ScalarProperty Name="update_user" ColumnName="update_user" />
+                <ScalarProperty Name="update_time" ColumnName="update_time" />
+                <ScalarProperty Name="update_date" ColumnName="update_date" />
+                <ScalarProperty Name="entry_user" ColumnName="entry_user" />
+                <ScalarProperty Name="entry_time" ColumnName="entry_time" />
+                <ScalarProperty Name="entry_date" ColumnName="entry_date" />
+                <ScalarProperty Name="lot_per_day" ColumnName="lot_per_day" />
+                <ScalarProperty Name="stock_day" ColumnName="stock_day" />
+                <ScalarProperty Name="status_name" ColumnName="status_name" />
+                <ScalarProperty Name="status_wip" ColumnName="status_wip" />
+                <ScalarProperty Name="qty_wip" ColumnName="qty_wip" />
+                <ScalarProperty Name="machine_no" ColumnName="machine_no" />
+                <ScalarProperty Name="wc" ColumnName="wc" />
+                <ScalarProperty Name="group_cd" ColumnName="group_cd" />
+                <ScalarProperty Name="plant" ColumnName="plant" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

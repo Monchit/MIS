@@ -4,6 +4,8 @@
     <EntitySetMapping Name="td_information_data">
       <EntityTypeMapping TypeName="tncinformationliveModel.td_information_data">
         <MappingFragment StoreEntitySet="td_information_data">
+          <ScalarProperty Name="rb2_process" ColumnName="rb2_process" />
+          <ScalarProperty Name="rb1_process" ColumnName="rb1_process" />
           <ScalarProperty Name="entry_date" ColumnName="entry_date" />
           <ScalarProperty Name="entry_time" ColumnName="entry_time" />
           <ScalarProperty Name="update_date" ColumnName="update_date" />
@@ -113,6 +115,28 @@
           <ScalarProperty Name="job_status" ColumnName="job_status" />
           <ScalarProperty Name="total_wip" ColumnName="total_wip" />
           <ScalarProperty Name="last_process" ColumnName="last_process" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tm_target">
+      <EntityTypeMapping TypeName="tncinformationliveModel.tm_target">
+        <MappingFragment StoreEntitySet="tm_target">
+          <ScalarProperty Name="tran_no" ColumnName="tran_no" />
+          <ScalarProperty Name="update_user" ColumnName="update_user" />
+          <ScalarProperty Name="update_time" ColumnName="update_time" />
+          <ScalarProperty Name="update_date" ColumnName="update_date" />
+          <ScalarProperty Name="entry_user" ColumnName="entry_user" />
+          <ScalarProperty Name="entry_time" ColumnName="entry_time" />
+          <ScalarProperty Name="entry_date" ColumnName="entry_date" />
+          <ScalarProperty Name="lot_per_day" ColumnName="lot_per_day" />
+          <ScalarProperty Name="stock_day" ColumnName="stock_day" />
+          <ScalarProperty Name="status_name" ColumnName="status_name" />
+          <ScalarProperty Name="status_wip" ColumnName="status_wip" />
+          <ScalarProperty Name="qty_wip" ColumnName="qty_wip" />
+          <ScalarProperty Name="machine_no" ColumnName="machine_no" />
+          <ScalarProperty Name="wc" ColumnName="wc" />
+          <ScalarProperty Name="group_cd" ColumnName="group_cd" />
+          <ScalarProperty Name="plant" ColumnName="plant" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
